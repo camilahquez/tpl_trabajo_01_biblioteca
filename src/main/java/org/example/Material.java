@@ -11,9 +11,17 @@ public class Material {
     private Date fechaPublicaion;
     private String idioma;
     private int cantidadDisponible;
-
-    public Material(String idMaterial,String nombre, String tipo, String autor, String editorial, String fechaPublicacion, String idioma, int cantidadDisponible){
-        
+    private  String estado;
+    public Material(String idMaterial,String nombre, String tipo, String autor, String editorial, Date fechaPublicacion, String idioma, int cantidadDisponible,String estado){
+        this.idMaterial = idMaterial;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.autor = autor;
+        this.editorial = editorial;
+        this.fechaPublicaion = fechaPublicacion;
+        this.idioma = idioma;
+        this.cantidadDisponible = cantidadDisponible;
+        this.estado = estado;
     }
 
 }
