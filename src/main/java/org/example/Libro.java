@@ -26,7 +26,7 @@ public class Libro extends Material implements Prestable {
 
     @Override
     public void devuelto() {
-        if(cantidadDisponible>0) cantidadDisponible++;
+        cantidadDisponible++;
     }
 
     @Override
@@ -34,4 +34,6 @@ public class Libro extends Material implements Prestable {
         return (cantidadDisponible>0);
     }
 }
+
+
 

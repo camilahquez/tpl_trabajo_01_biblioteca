@@ -26,7 +26,7 @@ public class Revista extends Material implements Prestable {
 
     @Override
     public void devuelto() {
-        if(cantidadDisponible>0) cantidadDisponible++;
+        cantidadDisponible++;
     }
 
     @Override

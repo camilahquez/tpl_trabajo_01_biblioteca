@@ -30,6 +30,7 @@ public class Usuario implements Autentificable {
 
     }
 
+
     @Override
     public boolean ConfirmarClave(String clavePuesta) {
         return this.clave.equals(clavePuesta);
