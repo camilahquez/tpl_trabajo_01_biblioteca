@@ -3,18 +3,65 @@ package org.example;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Libro extends Material {
+public class Libro extends Material implements Prestable {
     private String genero;
     private  String numeroEdicion;
     private int cantidadDisponible;
-    private  String estado;
+    private String autor;
 
-    public Libro(String idMaterial, String nombre, String tipo, String autor, String editorial, LocalDate fechaPublicacion, String idioma, int cantidadDisponible, String estado, String genero, String numeroEdicion){
-        super(idMaterial,nombre, tipo, autor, editorial, fechaPublicacion, idioma);
+    public Libro(String idMaterial, String titulo,String autor, String editorial, LocalDate fechaPublicacion, String idioma, String genero, String numeroEdicion,int cantidadDisponible){
+        super(idMaterial,titulo, editorial, fechaPublicacion, idioma);
         this.genero = genero;
+        this.autor = autor;
         this.numeroEdicion = numeroEdicion;
         this.cantidadDisponible = cantidadDisponible;
-        this.estado = estado;
+
+    }
+    public int getCantidadDisponible(){
+        return cantidadDisponible;
+    }
+    public String getAutor(){
+        return autor;
+    }
+    public LocalDate getFechaPublicacion(){
+        return fechaPublicaion;
     }
 
+
+    @Override
+    public void prestado() {
+        if (cantidadDisponible>0) cantidadDisponible--;
+    }
+
+    @Override
+    public void devuelto() {
+        cantidadDisponible++;
+    }
+
+    @Override
+    public boolean estaDisponible() {
+        return (cantidadDisponible>0);
+    }
+
+    @Override
+    public String getTipo() {
+        return "Libro";
+    }
+    @Override
+    public String toString() {
+        return "Libro {" +
+                "ID: " + getIdMaterial() +
+                ", Título: " + getTitulo() +
+                ", Autor: " + autor +
+                ", Editorial: " + getEditorial() +
+                ", Fecha de publicación: " + getFechaPublicacion() +
+                ", Idioma: " + getIdioma() +
+                ", Género: " + genero +
+                ", Número de edición: " + numeroEdicion +
+                ", Cantidad disponible: " + cantidadDisponible +
+                '}';
+    }
 }
+
+
+
