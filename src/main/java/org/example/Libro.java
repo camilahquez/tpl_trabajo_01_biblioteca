@@ -15,6 +15,9 @@ public class Libro extends Material implements Prestable {
         this.cantidadDisponible = cantidadDisponible;
 
     }
+    public int getCantidadDisponible(){
+        return cantidadDisponible;
+    }
 
     @Override
     public void prestado() {

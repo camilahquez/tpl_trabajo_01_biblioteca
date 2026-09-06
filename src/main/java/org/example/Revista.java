@@ -16,6 +16,9 @@ public class Revista extends Material implements Prestable {
         this.numero = numero;
         this.cantidadDisponible = cantidadDisponible;
     }
+    public int getCantidadDisponible(){
+        return cantidadDisponible;
+    }
     @Override
     public void prestado() {
         if (cantidadDisponible>0) cantidadDisponible--;
