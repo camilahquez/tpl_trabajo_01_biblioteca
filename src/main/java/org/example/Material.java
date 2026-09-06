@@ -1,21 +1,19 @@
 package org.example;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Material {
+public abstract class Material {
     private String idMaterial;
-    private String nombre;
-    private String tipo;
+    private String titulo;
     private  String autor;
     private String editorial;
     private LocalDate fechaPublicaion;
     private String idioma;
 
-    public Material(String idMaterial,String nombre, String tipo, String autor, String editorial, LocalDate fechaPublicacion, String idioma){
+    public Material(String idMaterial,String nombre, String autor, String editorial, LocalDate fechaPublicacion, String idioma){
         this.idMaterial = idMaterial;
-        this.nombre = nombre;
-        this.tipo = tipo;
+        this.titulo = nombre;
+
         this.autor = autor;
         this.editorial = editorial;
         this.fechaPublicaion = fechaPublicacion;
@@ -25,11 +23,8 @@ public class Material {
     public String getIdMaterial(){
         return idMaterial;
     }
-    public String getNombre(){
-        return nombre;
-    }
-    public String getTipo(){
-        return tipo;
+    public String getTitulo(){
+        return titulo;
     }
     public String getAutor(){
         return autor;
