@@ -8,10 +8,9 @@ public class Usuario implements Autentificable {
        private String clave;
        private int numeroPestramosDispoibles;
 
-    public Usuario (String idUsuario,String nombre,int documento, String clave, int numeroPestramosDispoibles){
+    public Usuario (String idUsuario,String nombre, String clave, int numeroPestramosDispoibles){
         this.idUsuario = idUsuario;
         this.nombre =nombre;
-        this.documento= documento;
         this.clave= clave;
         this.numeroPestramosDispoibles = 5;
 

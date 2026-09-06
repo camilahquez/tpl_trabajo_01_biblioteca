@@ -11,6 +11,7 @@ public class Biblioteca {
     private ArrayList<Material> listaMateriales = new ArrayList<>();
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
     private ArrayList<Prestamo> listaPrestamos = new ArrayList<>();
+    private Usuario usuarioLogueado;
     public  Biblioteca(String nombre, String direccion, String idBiblioteca){
         this.idBiblioteca = idBiblioteca;
         this.nombre = nombre;
@@ -165,7 +166,7 @@ public class Biblioteca {
             prestable.devuelto();
         }
         Usuario usuario = prestamo.getUsuario();
-        usuario.setNumeroPestramosDispoibles(usuario.getNumeroPestramosDispoibles() + 1)
+        usuario.setNumeroPestramosDispoibles(usuario.getNumeroPestramosDispoibles() + 1);
         prestamo.setFechaEntrega(fechaEntrega);
         System.out.println("se devolvio el material");
 
@@ -182,7 +183,17 @@ public class Biblioteca {
         LibroDigital libroDigital = new LibroDigital(idMaterial,  titulo, autor, editorial,  fechaPublicacion,idioma, genero,numeroEdicion, linkDescarga, cantidadDescargas);
         agregarMaterial(libroDigital);
     }
-    public void registrarUsuario(String idUsuario,String nombre,int documento, String clave, int numeroPestramosDispoibles){}
+    public void registrarUsuario(String idUsuario,String nombre, String clave, int numeroPestramosDispoibles){
+        Usuario usuario = buscarId(idUsuario);
+        if (usuario == null){
+           usuario = new Usuario(idUsuario, nombre, clave,  numeroPestramosDispoibles);
+           listaUsuarios.add(usuario);
+        }
+        else{
+            System.out.println("idUsuario ya existe no se puede registrar");
+        }
+    }
+
 
 }
 
