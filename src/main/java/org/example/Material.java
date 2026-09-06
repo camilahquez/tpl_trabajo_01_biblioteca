@@ -19,6 +19,7 @@ public abstract class Material {
         this.editorial = editorial;
         this.fechaPublicaion = fechaPublicacion;
         this.idioma = idioma;
+        int i=CantidadCreados++;
     }
 
     public String getIdMaterial(){
@@ -44,4 +45,12 @@ public abstract class Material {
         return CantidadCreados;
     }
 
+    public void MostrarInformacion() {
+        System.out.println("titulo:" + titulo);
+        System.out.println("ID del material:" + idMaterial);
+        System.out.println("autor:" + autor);
+        System.out.println("editorial:" + editorial);
+        System.out.println("fecha de publicación:" + fechaPublicaion);
+        System.out.println("idioma:" + idioma);
+    }
 }
