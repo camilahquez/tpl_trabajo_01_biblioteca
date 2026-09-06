@@ -3,18 +3,32 @@ package org.example;
 import java.time.LocalDate;
 import java.util.Date;
 
-public class Libro extends Material {
+public class Libro extends Material implements Prestable {
     private String genero;
     private  String numeroEdicion;
     private int cantidadDisponible;
-    private  String estado;
 
-    public Libro(String idMaterial, String nombre, String tipo, String autor, String editorial, LocalDate fechaPublicacion, String idioma, int cantidadDisponible, String estado, String genero, String numeroEdicion){
-        super(idMaterial,nombre, tipo, autor, editorial, fechaPublicacion, idioma);
+    public Libro(String idMaterial, String titulo,String autor, String editorial, LocalDate fechaPublicacion, String idioma, String genero, String numeroEdicion,int cantidadDisponible){
+        super(idMaterial,titulo, autor, editorial, fechaPublicacion, idioma);
         this.genero = genero;
         this.numeroEdicion = numeroEdicion;
         this.cantidadDisponible = cantidadDisponible;
-        this.estado = estado;
+
     }
 
+    @Override
+    public void prestado() {
+        if (cantidadDisponible>0) cantidadDisponible--;
+    }
+
+    @Override
+    public void devuelto() {
+        if(cantidadDisponible>0) cantidadDisponible++;
+    }
+
+    @Override
+    public boolean estaDisponible() {
+        return (cantidadDisponible>0);
+    }
 }
+

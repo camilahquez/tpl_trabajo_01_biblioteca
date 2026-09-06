@@ -1,7 +1,7 @@
 package org.example;
 
 public interface Prestable {
-    void prestar();
-    void devolver();
+    void prestado();
+    void devuelto();
     boolean estaDisponible();
 }
