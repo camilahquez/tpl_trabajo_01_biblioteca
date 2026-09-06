@@ -234,8 +234,11 @@ public class Biblioteca {
         usuarioLogueado = null;
         System.out.println("Sesión cerrada correctamente.");
     }
-
-
+    public void mostrasMateriales(){
+        for (Material material: listaMateriales){
+            System.out.println(material);
+        }
+    }
 
 }
 
