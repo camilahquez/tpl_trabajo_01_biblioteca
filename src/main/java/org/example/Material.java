@@ -10,9 +10,9 @@ public abstract class Material {
     private LocalDate fechaPublicaion;
     private String idioma;
 
-    public Material(String idMaterial,String nombre, String autor, String editorial, LocalDate fechaPublicacion, String idioma){
+    public Material(String idMaterial,String titulo, String autor, String editorial, LocalDate fechaPublicacion, String idioma){
         this.idMaterial = idMaterial;
-        this.titulo = nombre;
+        this.titulo = titulo;
 
         this.autor = autor;
         this.editorial = editorial;
