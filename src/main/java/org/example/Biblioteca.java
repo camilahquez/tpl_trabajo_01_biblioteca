@@ -108,6 +108,10 @@ public class Biblioteca {
 
 
     public void Prestar(String idUsuario, String titulo, LocalDate fechaPrestamo){
+        if (usuarioLogueado == null) {
+            System.out.println("Debe iniciar sesión primero.");
+            return;
+        }
         int numeroPrestamosDisponibles;
         boolean disponibilidadMaterial;
         numeroPrestamosDisponibles = buscarPrestamosDisponibles(idUsuario);
@@ -193,6 +197,29 @@ public class Biblioteca {
             System.out.println("idUsuario ya existe no se puede registrar");
         }
     }
+    public boolean iniciarSesion(String idUsuario, String clave) {
+
+        Usuario usuario = buscarId(idUsuario);
+
+        if (usuario == null) {
+            System.out.println("El usuario no existe.");
+            return false;
+        }
+
+        if (usuario.ConfirmarClave(clave)) {
+            usuarioLogueado = usuario;
+            System.out.println("Inicio de sesión exitoso.");
+            return true;
+        }
+
+        System.out.println("Clave incorrecta.");
+        return false;
+    }
+    public void cerrarSesion() {
+        usuarioLogueado = null;
+        System.out.println("Sesión cerrada correctamente.");
+    }
+
 
 
 }

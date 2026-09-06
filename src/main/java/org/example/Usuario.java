@@ -38,7 +38,5 @@ public class Usuario implements Autentificable {
     public String getNombre(){
         return nombre;
     }
-    public int getDocumento(){
-        return documento;
-    }
+
 }
