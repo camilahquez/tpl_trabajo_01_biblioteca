@@ -23,6 +23,10 @@ public class Libro extends Material implements Prestable {
     public String getAutor(){
         return autor;
     }
+    public LocalDate getFechaPublicacion(){
+        return fechaPublicaion;
+    }
+
 
     @Override
     public void prestado() {
@@ -42,6 +46,20 @@ public class Libro extends Material implements Prestable {
     @Override
     public String getTipo() {
         return "Libro";
+    }
+    @Override
+    public String toString() {
+        return "Libro {" +
+                "ID: " + getIdMaterial() +
+                ", Título: " + getTitulo() +
+                ", Autor: " + autor +
+                ", Editorial: " + getEditorial() +
+                ", Fecha de publicación: " + getFechaPublicacion() +
+                ", Idioma: " + getIdioma() +
+                ", Género: " + genero +
+                ", Número de edición: " + numeroEdicion +
+                ", Cantidad disponible: " + cantidadDisponible +
+                '}';
     }
 }
 

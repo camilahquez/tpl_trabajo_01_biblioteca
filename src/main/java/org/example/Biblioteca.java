@@ -31,7 +31,6 @@ public class Biblioteca {
                 return usuario;
             }
         }
-        System.out.println("el usuario no esta registrado");
         return null;
     }
     public  Usuario BuscarPorNombre(String nombre){
@@ -40,7 +39,7 @@ public class Biblioteca {
                 return usuario;
             }
         }
-        System.out.println("el usuario no esta registrado");
+
         return null;
     }
     public  Material BuscarIdMaterial(String idMaterial){
@@ -50,7 +49,6 @@ public class Biblioteca {
             }
 
         }
-        System.out.println("el material no se encunetra en la biblioteca");
         return null;
     }
 
@@ -60,18 +58,17 @@ public class Biblioteca {
                 return material;
             }
         }
-        System.out.println("el material no se encunetra en la biblioteca");
         return null;
     }
-    public Material buscarPorAutor(String autor) {
-
+    public ArrayList<Material> buscarPorAutor(String autor) {
+        ArrayList<Material> resultado = new ArrayList<>();
         for (Material material : listaMateriales) {
 
             if (material instanceof Libro) {
                 Libro libro = (Libro) material;
 
                 if (libro.getAutor().equals(autor)) {
-                    return libro;
+                    resultado.add(libro);
                 }
             }
 
@@ -79,13 +76,11 @@ public class Biblioteca {
                 LibroDigital libroDigital = (LibroDigital) material;
 
                 if (libroDigital.getAutor().equals(autor)) {
-                    return libroDigital;
+                    resultado.add(libroDigital);
                 }
             }
         }
-
-        System.out.println("No hay material de este autor.");
-        return null;
+        return resultado;
     }
     public int buscarPrestamosDisponibles(String idUsuario){
         int numeroPrestamosDisponibles;
@@ -94,8 +89,10 @@ public class Biblioteca {
                 numeroPrestamosDisponibles = usuario.getNumeroPestramosDispoibles();
                 return numeroPrestamosDisponibles;
             }
+            else{
+                System.out.println("el usuario no fue encontrado, por lo tanto no tine prestamos disponibles");
+            }
         }
-        System.out.println("el usuario no fue encontrado, por lo tanto no tine prestamos disponibles");
         return 0;
     }
     public boolean verificarDisponibilidad(String titulo) {
@@ -124,7 +121,11 @@ public class Biblioteca {
 
     public void Prestar(String idUsuario, String titulo, LocalDate fechaPrestamo){
         if (usuarioLogueado == null) {
-            System.out.println("Debe iniciar sesión primero.");
+            System.out.println("debe iniciar sesión primero");
+            return;
+        }
+        if (!usuarioLogueado.getIdUsuario().equals(idUsuario)) {
+            System.out.println("para pedir un  prestamo debe ser con tu usuario");
             return;
         }
         int numeroPrestamosDisponibles;
@@ -169,10 +170,19 @@ public class Biblioteca {
             }
 
         }
-        System.out.println("el materia ya fue devuelto");
+        System.out.println("el materia ya fue devuelto o no se encontro su prestamo");
         return null;
     }
     public void devolver(String idUsuario, String titulo,LocalDate fechaEntrega){
+        if (usuarioLogueado == null) {
+            System.out.println("Debe iniciar sesión primero.");
+            return;
+        }
+
+        if (!usuarioLogueado.getIdUsuario().equals(idUsuario)) {
+            System.out.println("No puede devolver un préstamo de otro usuario.");
+            return;
+        }
         Prestamo prestamo = buscarPrestamo(idUsuario, titulo);
         if (prestamo == null){
             System.out.println("no se encontro el prestamo");
@@ -198,15 +208,15 @@ public class Biblioteca {
         Revista revista = new Revista(idMaterial,  titulo,  editorial,  fechaPublicacion,  idioma,  periodicidad,  volumen,  numero,  cantidadDisponible);
         agregarMaterial(revista);
     }
-    public void registrarLibroDigital(String idMaterial, String titulo, String autor, String editorial, LocalDate fechaPublicacion, String idioma, String genero, String numeroEdicion, String linkDescarga,int cantidadDescargas){
-        LibroDigital libroDigital = new LibroDigital(idMaterial,  titulo, autor, editorial,  fechaPublicacion,idioma, genero,numeroEdicion, linkDescarga, cantidadDescargas);
+    public void registrar(String idMaterial, String titulo, String autor, String editorial, LocalDate fechaPublicacion, String idioma, String genero, String numeroEdicion, String linkDescarga, double tamanoArchivo){
+        LibroDigital libroDigital = new LibroDigital(idMaterial,  titulo, autor, editorial,  fechaPublicacion,idioma, genero,numeroEdicion, linkDescarga, tamanoArchivo);
         agregarMaterial(libroDigital);
     }
     public void registrarUsuario(String idUsuario,String nombre, String clave, int numeroPestramosDispoibles){
         Usuario usuario = buscarId(idUsuario);
         if (usuario == null){
            usuario = new Usuario(idUsuario, nombre, clave,  numeroPestramosDispoibles);
-           listaUsuarios.add(usuario);
+           agregarUsuario(usuario);
         }
         else{
             System.out.println("idUsuario ya existe no se puede registrar");
@@ -221,7 +231,9 @@ public class Biblioteca {
             return false;
         }
 
-        if (usuario.ConfirmarClave(clave)) {
+        Autentificable autentificable = usuario;
+
+        if (autentificable.ConfirmarClave(clave)) {
             usuarioLogueado = usuario;
             System.out.println("Inicio de sesión exitoso.");
             return true;
@@ -240,8 +252,28 @@ public class Biblioteca {
         }
     }
     public void estaditicas(){
-        Material.getCantidadCreados();
+        System.out.println("el numero actual de materiales ingresados es " +Material.getCantidadCreados());
+    }
+    public void descargar(String titulo) {
+        Material material = buscarPorTitulo(titulo);
+        if (material == null) {
+            return;
+        }
+        if (material instanceof Descargable) {
+            Descargable descargable = (Descargable) material;
+            System.out.println("Enlace de descarga: " + descargable.Enlace());
+            descargable.descargas();
+            System.out.println("Total de descargas: " + descargable.totalDescargas());
+        } else {
+            System.out.println("Este material no se puede descargar.");
+        }
+    }
+    public void mostrarPrestamos() {
+        System.out.println("===== LISTA DE PRÉSTAMOS =====");
 
+        for (Prestamo prestamo : listaPrestamos) {
+            System.out.println(prestamo);
+        }
     }
 
 }

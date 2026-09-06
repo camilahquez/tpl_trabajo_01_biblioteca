@@ -16,6 +16,9 @@ public class Revista extends Material implements Prestable {
         this.numero = numero;
         this.cantidadDisponible = cantidadDisponible;
     }
+    public LocalDate getFechaPublicacion(){
+        return fechaPublicaion;
+    }
     public int getCantidadDisponible(){
         return cantidadDisponible;
     }
@@ -37,5 +40,19 @@ public class Revista extends Material implements Prestable {
     @Override
     public String getTipo() {
         return "Revisata";
+    }
+    @Override
+    public String toString() {
+        return "Revista {" +
+                "ID: " + getIdMaterial() +
+                ", Título: " + getTitulo() +
+                ", Editorial: " + getEditorial() +
+                ", Fecha de publicación: " + getFechaPublicacion() +
+                ", Idioma: " + getIdioma() +
+                ", Periodicidad: " + periodicidad +
+                ", Volumen: " + volumen +
+                ", Número: " + numero +
+                ", Cantidad disponible: " + cantidadDisponible +
+                '}';
     }
 }

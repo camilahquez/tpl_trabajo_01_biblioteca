@@ -1,19 +1,145 @@
 package org.example;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 public class Main {
+
     public static void main(String[] args) {
-        // Press Alt+Intro with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        // Press Mayús+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        // Crear biblioteca
+        Biblioteca biblioteca = new Biblioteca(
+                "Biblioteca UdeA",
+                "Medellín",
+                "B001"
+        );
+        biblioteca.registrar(
+                "L002",
+                "El amor en los tiempos del cólera",
+                "Gabriel García Márquez",
+                "Editorial Oveja Negra",
+                LocalDate.of(1985, 12, 5),
+                "Español",
+                "Romance",
+                "001",
+                4
+        );
 
-            // Press Mayús+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+// Tercer libro del mismo autor
+        biblioteca.registrar(
+                "L003",
+                "Crónica de una muerte anunciada",
+                "Gabriel García Márquez",
+                "Editorial La Oveja Negra",
+                LocalDate.of(1981, 4, 1),
+                "Español",
+                "Novela",
+                "001",
+                3
+        );
+
+        // Crear LIBRO
+        biblioteca.registrar(
+                "L001",
+                "Cien años de soledad",
+                "Gabriel García Márquez",
+                "Editorial Sudamericana",
+                LocalDate.of(1967, 5, 30),
+                "Español",
+                "Realismo mágico",
+                "001",
+                3
+        );
+
+        // Crear REVISTA
+        biblioteca.registrar(
+                "R001",
+                "National Geographic",
+                "National Geographic",
+                LocalDate.of(2026, 8, 1),
+                "Español",
+                "Mensual",
+                "25",
+                "08",
+                5
+        );
+
+        // Crear LIBRO DIGITAL
+        biblioteca.registrar(
+                "D001",
+                "El principito",
+                "Antoine de Saint-Exupéry",
+                "Editorial Digital",
+                LocalDate.of(1943, 4, 6),
+                "Español",
+                "Literatura",
+                "001",
+                "https://biblioteca.com/el-principito",
+                2.5
+        );
+
+        // Crear USUARIO
+        biblioteca.registrarUsuario(
+                "1039468510",
+                "Camila",
+                "1234",
+                5
+        );
+
+        // Mostrar materiales
+        //System.out.println("===== MATERIALES =====");
+        //biblioteca.mostrasMateriales();
+        //biblioteca.buscarId("1039468510");
+       // biblioteca.buscarPorAutor("Gabriel García Márquez");
+        ArrayList<Material> resultados = biblioteca.buscarPorAutor("Gabriel García Márquez");
+
+        for (Material material : resultados) {
+            System.out.println(material);
         }
+        // =========================
+// INICIAR SESIÓN
+// =========================
+
+        biblioteca.iniciarSesion("1039468510", "1234");
+
+
+// =========================
+// HACER DOS PRÉSTAMOS
+// =========================
+
+        System.out.println("\n===== PRIMER PRÉSTAMO =====");
+
+        biblioteca.Prestar(
+                "1039468510",
+                "Cien años de soledad",
+                LocalDate.now()
+        );
+
+
+        System.out.println("\n===== SEGUNDO PRÉSTAMO =====");
+
+        biblioteca.Prestar(
+                "1039468510",
+                "El amor en los tiempos del cólera",
+                LocalDate.now()
+        );
+        biblioteca.mostrarPrestamos();
+
+
+// =========================
+// DEVOLVER EL PRIMER LIBRO
+// =========================
+
+        System.out.println("\n===== DEVOLUCIÓN =====");
+
+        biblioteca.devolver(
+                "1039468510",
+                "Cien años de soledad", LocalDate.of(2026, 9, 8));
+        biblioteca.mostrarPrestamos();
+        biblioteca.estaditicas();
+
     }
+
+
+
 }

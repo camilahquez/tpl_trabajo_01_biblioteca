@@ -30,5 +30,16 @@ public class Prestamo {
     public void setFechaEntrega(LocalDate fechaEntrega) {
         this.fechaEntrega = fechaEntrega;
     }
+    @Override
+    public String toString() {
+        return "Prestamo {" +
+                "Usuario: " + usuario.getNombre() +
+                ", ID Usuario: " + usuario.getIdUsuario() +
+                ", Material: " + material.getTitulo() +
+                ", ID Material: " + material.getIdMaterial() +
+                ", Fecha de préstamo: " + fechaPrestamo +
+                ", Fecha de entrega: " + fechaEntrega +
+                '}';
+    }
 }
 

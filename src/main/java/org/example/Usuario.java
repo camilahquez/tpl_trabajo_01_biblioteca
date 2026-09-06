@@ -38,5 +38,14 @@ public class Usuario implements Autentificable {
     public String getNombre(){
         return nombre;
     }
+    @Override
+    public String toString() {
+        return "Usuario {" +
+                "ID: " + idUsuario +
+                ", Nombre: " + nombre +
+                ", Documento: " + documento +
+                ", Préstamos disponibles: " + numeroPestramosDispoibles +
+                '}';
+    }
 
 }
