@@ -9,8 +9,8 @@ public class Revista extends Material implements Prestable {
     private  String numero;
     private int cantidadDisponible;
 
-    public  Revista(String idMaterial, String titulo, String autor, String editorial, LocalDate fechaPublicacion, String idioma, String periodicidad, String volumen, String numero, int cantidadDisponible){
-        super(idMaterial,titulo, autor, editorial, fechaPublicacion, idioma);
+    public  Revista(String idMaterial, String titulo, String editorial, LocalDate fechaPublicacion, String idioma, String periodicidad, String volumen, String numero, int cantidadDisponible){
+        super(idMaterial,titulo, editorial, fechaPublicacion, idioma);
         this.periodicidad = periodicidad;
         this.volumen = volumen;
         this.numero = numero;
@@ -32,5 +32,10 @@ public class Revista extends Material implements Prestable {
     @Override
     public boolean estaDisponible() {
         return (cantidadDisponible>0);
+    }
+
+    @Override
+    public String getTipo() {
+        return "Revisata";
     }
 }

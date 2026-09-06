@@ -7,16 +7,21 @@ public class Libro extends Material implements Prestable {
     private String genero;
     private  String numeroEdicion;
     private int cantidadDisponible;
+    private String autor;
 
     public Libro(String idMaterial, String titulo,String autor, String editorial, LocalDate fechaPublicacion, String idioma, String genero, String numeroEdicion,int cantidadDisponible){
-        super(idMaterial,titulo, autor, editorial, fechaPublicacion, idioma);
+        super(idMaterial,titulo, editorial, fechaPublicacion, idioma);
         this.genero = genero;
+        this.autor = autor;
         this.numeroEdicion = numeroEdicion;
         this.cantidadDisponible = cantidadDisponible;
 
     }
     public int getCantidadDisponible(){
         return cantidadDisponible;
+    }
+    public String getAutor(){
+        return autor;
     }
 
     @Override
@@ -32,6 +37,11 @@ public class Libro extends Material implements Prestable {
     @Override
     public boolean estaDisponible() {
         return (cantidadDisponible>0);
+    }
+
+    @Override
+    public String getTipo() {
+        return "Libro";
     }
 }
 

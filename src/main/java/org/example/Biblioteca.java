@@ -63,13 +63,28 @@ public class Biblioteca {
         System.out.println("el material no se encunetra en la biblioteca");
         return null;
     }
-    public  Material BuscarPorAutor(String autor){
-        for (Material material : listaMateriales){
-            if (material.getAutor().equals(autor)){
-                return material;
+    public Material buscarPorAutor(String autor) {
+
+        for (Material material : listaMateriales) {
+
+            if (material instanceof Libro) {
+                Libro libro = (Libro) material;
+
+                if (libro.getAutor().equals(autor)) {
+                    return libro;
+                }
+            }
+
+            else if (material instanceof LibroDigital) {
+                LibroDigital libroDigital = (LibroDigital) material;
+
+                if (libroDigital.getAutor().equals(autor)) {
+                    return libroDigital;
+                }
             }
         }
-        System.out.println("no hay material en la biblioteca de este autor");
+
+        System.out.println("No hay material de este autor.");
         return null;
     }
     public int buscarPrestamosDisponibles(String idUsuario){
@@ -179,8 +194,8 @@ public class Biblioteca {
         Libro libro = new Libro(idMaterial,  titulo, autor,  editorial,fechaPublicacion, idioma,  genero,  numeroEdicion, cantidadDisponible);
         agregarMaterial(libro);
     }
-    public void registrar(String idMaterial, String titulo, String autor, String editorial, LocalDate fechaPublicacion, String idioma, String periodicidad, String volumen, String numero, int cantidadDisponible){
-        Revista revista = new Revista(idMaterial,  titulo,  autor,  editorial,  fechaPublicacion,  idioma,  periodicidad,  volumen,  numero,  cantidadDisponible);
+    public void registrar(String idMaterial, String titulo, String editorial, LocalDate fechaPublicacion, String idioma, String periodicidad, String volumen, String numero, int cantidadDisponible){
+        Revista revista = new Revista(idMaterial,  titulo,  editorial,  fechaPublicacion,  idioma,  periodicidad,  volumen,  numero,  cantidadDisponible);
         agregarMaterial(revista);
     }
     public void registrarLibroDigital(String idMaterial, String titulo, String autor, String editorial, LocalDate fechaPublicacion, String idioma, String genero, String numeroEdicion, String linkDescarga,int cantidadDescargas){

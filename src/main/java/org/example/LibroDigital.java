@@ -8,15 +8,21 @@ public class LibroDigital extends Material implements Descargable {
     private  String numeroEdicion;
     private String linkDescarga;
     private int cantidadDescargas;
+    private String autor;
 
     public LibroDigital(String idMaterial, String titulo, String autor, String editorial, LocalDate fechaPublicacion, String idioma, String genero, String numeroEdicion, String linkDescarga,int cantidadDescargas){
-        super(idMaterial,titulo, autor, editorial, fechaPublicacion, idioma);
+        super(idMaterial,titulo,  editorial, fechaPublicacion, idioma);
+        this.autor = autor;
         this.genero = genero;
         this.numeroEdicion = numeroEdicion;
         this.linkDescarga = linkDescarga;
         this.cantidadDescargas =cantidadDescargas;
 
     }
+    public String getAutor(){
+        return autor;
+    }
+
     @Override
     public String Enlace() {
     return linkDescarga;
@@ -30,5 +36,10 @@ public class LibroDigital extends Material implements Descargable {
     @Override
     public int totalDescargas() {
         return cantidadDescargas;
+    }
+
+    @Override
+    public String getTipo() {
+        return "Libro Digital";
     }
 }
