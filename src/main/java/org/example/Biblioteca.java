@@ -239,6 +239,10 @@ public class Biblioteca {
             System.out.println(material);
         }
     }
+    public void estaditicas(){
+        Material.getCantidadCreados();
+
+    }
 
 }
 

@@ -16,8 +16,7 @@ public abstract class Material {
         this.editorial = editorial;
         this.fechaPublicaion = fechaPublicacion;
         this.idioma = idioma;
-
-        int i=CantidadCreados++;
+        CantidadCreados++;
     }
 
     public abstract String getTipo();
