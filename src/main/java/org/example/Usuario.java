@@ -12,7 +12,7 @@ public class Usuario implements Autentificable {
         this.idUsuario = idUsuario;
         this.nombre =nombre;
         this.clave= clave;
-        this.numeroPestramosDispoibles = 5;
+        this.numeroPestramosDispoibles = numeroPestramosDispoibles;
 
 
     }
