@@ -1,139 +1,195 @@
 package org.example;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
-
     public static void main(String[] args) {
+        // Inicializamos la biblioteca
+        Biblioteca biblioteca = new Biblioteca("Biblioteca Central", "Calle Principal 123", "BIBLIO-001");
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 0;
 
-        // Crear biblioteca
-        Biblioteca biblioteca = new Biblioteca(
-                "Biblioteca UdeA",
-                "Medellín",
-                "B001"
-        );
-        biblioteca.registrar(
-                "L002",
-                "El amor en los tiempos del cólera",
-                "Gabriel García Márquez",
-                "Editorial Oveja Negra",
-                LocalDate.of(1985, 12, 5),
-                "Español",
-                "Romance",
-                "001",
-                4
-        );
+        System.out.println("¡Bienvenido al sistema de la Biblioteca Central!");
 
-// Tercer libro del mismo autor
-        biblioteca.registrar(
-                "L003",
-                "Crónica de una muerte anunciada",
-                "Gabriel García Márquez",
-                "Editorial La Oveja Negra",
-                LocalDate.of(1981, 4, 1),
-                "Español",
-                "Novela",
-                "001",
-                3);
+        while (opcion != 10) {
+            System.out.println("\n================ MENÚ PRINCIPAL ================");
+            System.out.println("1. Iniciar Sesión");
+            System.out.println("2. Registrar Material (Libro, Libro Digital o Revista)");
+            System.out.println("3. Registrar Usuario (Profesor, Estudiante, Empleado)");
+            System.out.println("4. Prestar Material");
+            System.out.println("5. Devolver Material");
+            System.out.println("6. Mostrar todos los Materiales");
+            System.out.println("7. Descargar Material Digital");
+            System.out.println("8. Ver Estadísticas"); // <-- ¡Aquí está de vuelta!
+            System.out.println("9. Cerrar Sesión");
+            System.out.println("10. Salir del sistema");
+            System.out.print("Elige una opción: ");
+            
+            opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer del scanner
 
-        // Crear LIBRO
-        biblioteca.registrar(
-                "L001",
-                "Cien años de soledad",
-                "Gabriel García Márquez",
-                "Editorial Sudamericana",
-                LocalDate.of(1967, 5, 30),
-                "Español",
-                "Realismo mágico",
-                "001",
-                3);
+            switch (opcion) {
+                case 1:
+                    System.out.println("\n--- INICIAR SESIÓN ---");
+                    System.out.print("ID Usuario: ");
+                    String idLogin = scanner.nextLine();
+                    System.out.print("Clave: ");
+                    String claveLogin = scanner.nextLine();
+                    biblioteca.iniciarSesion(idLogin, claveLogin);
+                    break;
 
-        // Crear REVISTA
-        biblioteca.registrar(
-                "R001",
-                "National Geographic",
-                "National Geographic",
-                LocalDate.of(2026, 8, 1),
-                "Español",
-                "Mensual",
-                "25",
-                "08",
-                5);
+                case 2:
+                    System.out.println("\n--- TIPO DE MATERIAL ---");
+                    System.out.println("1. Libro Físico");
+                    System.out.println("2. Libro Digital");
+                    System.out.println("3. Revista");
+                    System.out.print("Elige el tipo (1, 2 o 3): ");
+                    int tipoMaterial = scanner.nextInt();
+                    scanner.nextLine(); // Limpiar el buffer
 
-        // Crear LIBRO DIGITAL
-        biblioteca.registrar(
-                "D001",
-                "El principito",
-                "Antoine de Saint-Exupéry",
-                "Editorial Digital",
-                LocalDate.of(1943, 4, 6),
-                "Español",
-                "Literatura",
-                "001",
-                "https://biblioteca.com/el-principito",
-                2.5);
+                    System.out.print("ID Material: ");
+                    String idM = scanner.nextLine();
+                    System.out.print("Título: ");
+                    String tit = scanner.nextLine();
+                    System.out.print("Editorial: ");
+                    String edit = scanner.nextLine();
+                    System.out.print("Idioma: ");
+                    String idio = scanner.nextLine();
 
-        // Crear USUARIO
-        biblioteca.registrarUsuario(
-                "1039468510",
-                "Camila",
-                "1234",
-                5);
+                    if (tipoMaterial == 1) {
+                        System.out.print("Autor: ");
+                        String aut = scanner.nextLine();
+                        System.out.print("Género: ");
+                        String gen = scanner.nextLine();
+                        System.out.print("Número de edición: ");
+                        String numEd = scanner.nextLine();
+                        System.out.print("Cantidad disponible: ");
+                        int cant = scanner.nextInt();
+                        scanner.nextLine();
+                        
+                        biblioteca.registrar(idM, tit, aut, edit, LocalDate.now(), idio, gen, numEd, cant);
+                        System.out.println("Libro Físico registrado con éxito.");
+                        
+                    } else if (tipoMaterial == 2) {
+                        System.out.print("Autor: ");
+                        String aut = scanner.nextLine();
+                        System.out.print("Género: ");
+                        String gen = scanner.nextLine();
+                        System.out.print("Número de edición: ");
+                        String numEd = scanner.nextLine();
+                        System.out.print("Link de descarga: ");
+                        String link = scanner.nextLine();
+                        System.out.print("Tamaño del archivo (ej. 2.5): ");
+                        double tamano = scanner.nextDouble();
+                        scanner.nextLine();
+                        
+                        biblioteca.registrar(idM, tit, aut, edit, LocalDate.now(), idio, gen, numEd, link, tamano);
+                        System.out.println("Libro Digital registrado con éxito.");
+                        
+                    } else if (tipoMaterial == 3) {
+                        System.out.print("Periodicidad (ej. Mensual, Semanal): ");
+                        String per = scanner.nextLine();
+                        System.out.print("Volumen: ");
+                        String vol = scanner.nextLine();
+                        System.out.print("Número de revista: ");
+                        String numRev = scanner.nextLine();
+                        System.out.print("Cantidad disponible: ");
+                        int cant = scanner.nextInt();
+                        scanner.nextLine();
+                        
+                        biblioteca.registrar(idM, tit, edit, LocalDate.now(), idio, per, vol, numRev, cant);
+                        System.out.println("Revista registrada con éxito.");
+                        
+                    } else {
+                        System.out.println("Tipo de material no válido.");
+                    }
+                    break;
 
-        // Mostrar materiales
-        //System.out.println("===== MATERIALES =====");
-        biblioteca.mostrasMateriales();
-        //biblioteca.buscarId("1039468510");
-       // biblioteca.buscarPorAutor("Gabriel García Márquez");
-        ArrayList<Material> resultados = biblioteca.buscarPorAutor("Gabriel García Márquez");
+                case 3:
+                    System.out.println("\n--- REGISTRAR USUARIO ---");
+                    System.out.print("ID Usuario: ");
+                    String idU = scanner.nextLine();
+                    System.out.print("Nombre: ");
+                    String nom = scanner.nextLine();
+                    System.out.print("Clave: ");
+                    String clave = scanner.nextLine();
+                    
+                    System.out.println("¿Qué tipo de usuario es?");
+                    System.out.println("1. Profesor (5 préstamos)");
+                    System.out.println("2. Estudiante (3 préstamos)");
+                    System.out.println("3. Empleado (1 préstamo)");
+                    System.out.print("Elige una opción: ");
+                    int tipoUsr = scanner.nextInt();
+                    scanner.nextLine();
+                    
+                    int maxPrestamos;
+                    if (tipoUsr == 1) {
+                        maxPrestamos = 5;
+                    } else if (tipoUsr == 2) {
+                        maxPrestamos = 3;
+                    } else if (tipoUsr == 3) {
+                        maxPrestamos = 1;
+                    } else {
+                        System.out.println("Opción no válida. Se asignará 1 préstamo por defecto.");
+                        maxPrestamos = 1;
+                    }
+                    
+                    biblioteca.registrarUsuario(idU, nom, clave, maxPrestamos);
+                    System.out.println("Usuario registrado correctamente.");
+                    break;
 
-        for (Material material : resultados) {
-            System.out.println(material);
+                case 4:
+                    System.out.println("\n--- PRESTAR MATERIAL ---");
+                    System.out.print("Ingresa tu ID de Usuario (el que inició sesión): ");
+                    String idPrestamo = scanner.nextLine();
+                    System.out.print("Ingresa el Título del material: ");
+                    String tituloPrestar = scanner.nextLine();
+                    
+                    biblioteca.Prestar(idPrestamo, tituloPrestar, LocalDate.now());
+                    break;
+
+                case 5:
+                    System.out.println("\n--- DEVOLVER MATERIAL ---");
+                    System.out.print("Ingresa tu ID de Usuario (el que inició sesión): ");
+                    String idDevolucion = scanner.nextLine();
+                    System.out.print("Ingresa el Título del material a devolver: ");
+                    String tituloDevolver = scanner.nextLine();
+                    
+                    biblioteca.devolver(idDevolucion, tituloDevolver, LocalDate.now());
+                    break;
+
+                case 6:
+                    System.out.println("\n--- LISTA DE MATERIALES ---");
+                    biblioteca.mostrasMateriales();
+                    break;
+
+                case 7:
+                    System.out.println("\n--- DESCARGAR MATERIAL DIGITAL ---");
+                    System.out.print("Ingresa el Título del libro digital a descargar: ");
+                    String tituloDescargar = scanner.nextLine();
+                    biblioteca.descargar(tituloDescargar);
+                    break;
+
+                case 8:
+                    System.out.println("\n--- ESTADÍSTICAS ---");
+                    biblioteca.estaditicas(); // Llama al método que ya tenías en Biblioteca
+                    break;
+
+                case 9:
+                    System.out.println("\n--- CERRANDO SESIÓN ---");
+                    biblioteca.cerrarSesion();
+                    break;
+
+                case 10:
+                    System.out.println("Saliendo del sistema... ¡Hasta luego!");
+                    break;
+
+                default:
+                    System.out.println("Opción no válida. Por favor, intenta de nuevo.");
+            }
         }
-        // =========================
-// INICIAR SESIÓN
-// =========================
-
-        biblioteca.iniciarSesion("1039468510", "1234");
-
-
-// =========================
-// HACER DOS PRÉSTAMOS
-// =========================
-
-        System.out.println("\n===== PRIMER PRÉSTAMO =====");
-
-        biblioteca.Prestar(
-                "1039468510",
-                "Cien años de soledad",
-                LocalDate.now()
-        );
-
-
-        System.out.println("\n===== SEGUNDO PRÉSTAMO =====");
-
-        biblioteca.Prestar(
-                "1039468510",
-                "El amor en los tiempos del cólera",
-                LocalDate.now()
-        );
-        biblioteca.mostrarPrestamos();
-
-
-// =========================
-// DEVOLVER EL PRIMER LIBRO
-// =========================
-
-        System.out.println("\n===== DEVOLUCIÓN =====");
-
-        biblioteca.devolver(
-                "1039468510",
-                "Cien años de soledad", LocalDate.of(2026, 9, 8));
-        biblioteca.mostrarPrestamos();
-        biblioteca.estaditicas();
-
-
+        
+        scanner.close();
     }
-
 }
