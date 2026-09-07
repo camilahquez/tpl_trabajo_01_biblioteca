@@ -83,18 +83,25 @@ public class Biblioteca {
         return resultado;
     }
     public int buscarPrestamosDisponibles(String idUsuario){
+    for (Usuario usuario : listaUsuarios){
+        if (usuario.getIdUsuario().equals(idUsuario)){
+            return usuario.getNumeroPestramosDisponibles();
+        }
+    }
+    System.out.println("El usuario no fue encontrado, por lo tanto no tiene préstamos disponibles.");
+    return 0;
+}
+    public int buscarPrestamosDisponibles(String idUsuario){
         int numeroPrestamosDisponibles;
         for (Usuario usuario : listaUsuarios){
             if (usuario.getIdUsuario().equals(idUsuario)){
-                numeroPrestamosDisponibles = usuario.getNumeroPestramosDispoibles();
+                numeroPrestamosDisponibles = usuario.getNumeroPestramosDisponibles();
                 return numeroPrestamosDisponibles;
             }
-            else{
+        
                 System.out.println("el usuario no fue encontrado, por lo tanto no tine prestamos disponibles");
-            }
-        }
-        return 0;
-    }
+                return 0;
+    
     public boolean verificarDisponibilidad(String titulo) {
         Material material = buscarPorTitulo(titulo);
 
@@ -139,7 +146,7 @@ public class Biblioteca {
         if (numeroPrestamosDisponibles > 0 && disponibilidadMaterial){
             Prestamo prestamo = new Prestamo(usuario, material,fechaPrestamo);
             listaPrestamos.add(prestamo);
-            usuario.setNumeroPestramosDispoibles(numeroPrestamosDisponibles - 1);
+            usuario.setNumeroPestramosDisponibles(numeroPrestamosDisponibles - 1);
             if (material instanceof Prestable) {
                 Prestable prestable = (Prestable) material;
                 prestable.prestado();
@@ -195,7 +202,7 @@ public class Biblioteca {
             prestable.devuelto();
         }
         Usuario usuario = prestamo.getUsuario();
-        usuario.setNumeroPestramosDispoibles(usuario.getNumeroPestramosDispoibles() + 1);
+        usuario.setNumeroPestramosDisponibles(usuario.getNumeroPestramosDisponibles() + 1);
         prestamo.setFechaEntrega(fechaEntrega);
         System.out.println("se devolvio el material");
 
@@ -212,10 +219,10 @@ public class Biblioteca {
         LibroDigital libroDigital = new LibroDigital(idMaterial,  titulo, autor, editorial,  fechaPublicacion,idioma, genero,numeroEdicion, linkDescarga, tamanoArchivo);
         agregarMaterial(libroDigital);
     }
-    public void registrarUsuario(String idUsuario,String nombre, String clave, int numeroPestramosDispoibles){
+    public void registrarUsuario(String idUsuario,String nombre, String clave, int numeroPestramosDisponibles){
         Usuario usuario = buscarId(idUsuario);
         if (usuario == null){
-           usuario = new Usuario(idUsuario, nombre, clave,  numeroPestramosDispoibles);
+           usuario = new Usuario(idUsuario, nombre, clave,  numeroPestramosDisponibles);
            agregarUsuario(usuario);
         }
         else{
