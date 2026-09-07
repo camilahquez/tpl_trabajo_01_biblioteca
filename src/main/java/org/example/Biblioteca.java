@@ -247,8 +247,12 @@ public class Biblioteca {
         System.out.println("Sesión cerrada correctamente.");
     }
     public void mostrasMateriales(){
+        if (Material.getCantidadCreados() > 0){
         for (Material material: listaMateriales){
             System.out.println(material);
+        }
+        }else {
+            System.out.println("no hay materiales ingresdos");
         }
     }
     public void estaditicas(){
@@ -269,13 +273,14 @@ public class Biblioteca {
         }
     }
     public void mostrarPrestamos() {
-        System.out.println("===== LISTA DE PRÉSTAMOS =====");
-
-        for (Prestamo prestamo : listaPrestamos) {
+        if (listaMateriales.isEmpty()) {
+            System.out.println("no se han hecho prestamos");
+        } else {
+            for (Prestamo prestamo : listaPrestamos) {
             System.out.println(prestamo);
         }
+      }
     }
-
 }
 
 
