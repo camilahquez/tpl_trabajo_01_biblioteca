@@ -7,17 +7,25 @@ public abstract class Material {
     protected String idMaterial;
     protected String titulo;
     protected String editorial;
-    protected LocalDate fechaPublicaion;
+    protected LocalDate fechaPublicacion;
     protected String idioma;
 
     public Material(String idMaterial,String titulo, String editorial, LocalDate fechaPublicacion, String idioma){
         this.idMaterial = idMaterial;
         this.titulo = titulo;
         this.editorial = editorial;
-        this.fechaPublicaion = fechaPublicacion;
+        this.fechaPublicacion = fechaPublicacion;
         this.idioma = idioma;
         CantidadCreados++;
     }
+public Material(String idMaterial,String titulo, String editorial, String idioma){
+    this.idMaterial = idMaterial;
+    this.titulo = titulo;
+    this.editorial = editorial;
+    this.fechaPublicacion = null;
+    this.idioma = idioma;
+    CantidadCreados++;
+}
 
     public abstract String getTipo();
 
@@ -30,8 +38,8 @@ public abstract class Material {
     public String getEditorial(){
         return editorial;
     }
-    public LocalDate getFechaPublicaion(){
-        return fechaPublicaion;
+    public LocalDate getFechaPublicacion(){
+        return fechaPublicacion;
     }
     public String getIdioma(){
         return idioma;
@@ -45,7 +53,7 @@ public abstract class Material {
         System.out.println("titulo:" + titulo);
         System.out.println("ID del material:" + idMaterial);
         System.out.println("editorial:" + editorial);
-        System.out.println("fecha de publicación:" + fechaPublicaion);
+        System.out.println("fecha de publicación:" + fechaPublicacion);
         System.out.println("idioma:" + idioma);
     }
 }
