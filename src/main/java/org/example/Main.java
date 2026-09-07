@@ -35,8 +35,7 @@ public class Main {
                 "Español",
                 "Novela",
                 "001",
-                3
-        );
+                3);
 
         // Crear LIBRO
         biblioteca.registrar(
@@ -48,8 +47,7 @@ public class Main {
                 "Español",
                 "Realismo mágico",
                 "001",
-                3
-        );
+                3);
 
         // Crear REVISTA
         biblioteca.registrar(
@@ -61,8 +59,7 @@ public class Main {
                 "Mensual",
                 "25",
                 "08",
-                5
-        );
+                5);
 
         // Crear LIBRO DIGITAL
         biblioteca.registrar(
@@ -75,20 +72,18 @@ public class Main {
                 "Literatura",
                 "001",
                 "https://biblioteca.com/el-principito",
-                2.5
-        );
+                2.5);
 
         // Crear USUARIO
         biblioteca.registrarUsuario(
                 "1039468510",
                 "Camila",
                 "1234",
-                5
-        );
+                5);
 
         // Mostrar materiales
         //System.out.println("===== MATERIALES =====");
-        //biblioteca.mostrasMateriales();
+        biblioteca.mostrasMateriales();
         //biblioteca.buscarId("1039468510");
        // biblioteca.buscarPorAutor("Gabriel García Márquez");
         ArrayList<Material> resultados = biblioteca.buscarPorAutor("Gabriel García Márquez");
@@ -138,8 +133,7 @@ public class Main {
         biblioteca.mostrarPrestamos();
         biblioteca.estaditicas();
 
+
     }
-
-
 
 }
