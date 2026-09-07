@@ -17,7 +17,7 @@ public class Revista extends Material implements Prestable {
         this.cantidadDisponible = cantidadDisponible;
     }
     public LocalDate getFechaPublicacion(){
-        return fechaPublicaion;
+        return fechaPublicacion;
     }
     public int getCantidadDisponible(){
         return cantidadDisponible;

@@ -26,7 +26,7 @@ public class LibroDigital extends Material implements Descargable {
         return autor;
     }
     public LocalDate getFechaPublicacion(){
-        return fechaPublicaion;
+        return fechaPublicacion;
     }
     public void descargar() {
         System.out.println("Iniciando descarga de: " + getTitulo());

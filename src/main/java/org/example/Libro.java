@@ -24,7 +24,7 @@ public class Libro extends Material implements Prestable {
         return autor;
     }
     public LocalDate getFechaPublicacion(){
-        return fechaPublicaion;
+        return fechaPublicacion;
     }
 
 
