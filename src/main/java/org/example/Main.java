@@ -25,6 +25,8 @@ public class Main {
             System.out.println("9. Cerrar Sesión");
             System.out.println("10. Salir del sistema");
             System.out.println("11.buscar por autor");
+            System.out.println("12.mostrar prestamos");
+            System.out.println("13.buscar prestamo");
             System.out.print("Elige una opción: ");
             
             opcion = scanner.nextInt();
@@ -156,8 +158,10 @@ public class Main {
                     String idDevolucion = scanner.nextLine();
                     System.out.print("Ingresa el Título del material a devolver: ");
                     String tituloDevolver = scanner.nextLine();
-                    
-                    biblioteca.devolver(idDevolucion, tituloDevolver, LocalDate.now());
+                    System.out.print("Ingresar fecha de la devolucion ");
+                    String fechaEntregaT = scanner.nextLine();
+                    LocalDate fechaEntrega = LocalDate.parse(fechaEntregaT);
+                    biblioteca.devolver(idDevolucion, tituloDevolver, fechaEntrega );
                     break;
 
                 case 6:
@@ -187,9 +191,28 @@ public class Main {
                     break;
 
                 case 11:
-                    System.out.println("buscar por autor");
+                    System.out.println("ecribir autor a buscar: ");
                     String autor = scanner.nextLine();
                     biblioteca.buscarPorAutor(autor);
+                    break;
+
+                case 12:
+                    biblioteca.mostrarPrestamos();
+                    break;
+
+                case 13:
+                    System.out.println("titulo del material prestado ");
+                    String titulo = scanner.nextLine();
+                    System.out.println("id del usuario que presto el material");
+                    String idUsuario = scanner.nextLine();
+                    Prestamo prestamo = biblioteca.buscarPrestamo(idUsuario, titulo);
+                    if(prestamo != null){
+                        System.out.println(prestamo);
+                    }else{
+                        System.out.println("no se encontro el prestamo");
+                    }
+
+                    break;
 
 
                 default:
