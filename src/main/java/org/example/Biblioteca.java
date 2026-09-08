@@ -243,6 +243,7 @@ public class Biblioteca {
     public void mostrasMateriales() {
         if (Material.getCantidadCreados() > 0) {
             for (Material material : listaMateriales) {
+                System.out.println(material.getTipo());
                 System.out.println(material);
             }
         } else {
