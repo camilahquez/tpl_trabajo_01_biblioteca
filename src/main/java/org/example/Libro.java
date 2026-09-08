@@ -40,7 +40,11 @@ public class Libro extends Material implements Prestable {
 
     @Override
     public boolean estaDisponible() {
-        return (cantidadDisponible>0);
+        if((cantidadDisponible>0) && getEditorial() != "dorada"){
+        return true; }
+        else{
+            return false;
+        }
     }
 
     @Override
