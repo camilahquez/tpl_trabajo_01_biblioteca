@@ -40,6 +40,7 @@ public class LibroDigital extends Material implements Descargable {
     return linkDescarga;
 }
 
+
     @Override
     public void descargas() {
         cantidadDescargas++;
@@ -56,7 +57,7 @@ public class LibroDigital extends Material implements Descargable {
     }
     @Override
     public String toString() {
-        return "Libro Digital {" +
+        return " {" +
                 "ID: " + getIdMaterial() +
                 ", Título: " + getTitulo() +
                 ", Autor: " + autor +

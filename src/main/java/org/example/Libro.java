@@ -47,9 +47,10 @@ public class Libro extends Material implements Prestable {
     public String getTipo() {
         return "Libro";
     }
+
     @Override
     public String toString() {
-        return "Libro {" +
+        return "{" +
                 "ID: " + getIdMaterial() +
                 ", Título: " + getTitulo() +
                 ", Autor: " + autor +
@@ -62,6 +63,7 @@ public class Libro extends Material implements Prestable {
                 '}';
     }
 }
+
 
 
 

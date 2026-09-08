@@ -42,8 +42,13 @@ public class Revista extends Material implements Prestable {
         return "Revisata";
     }
     @Override
+    public String getAutor() {
+        return "no aplica";
+    }
+
+    @Override
     public String toString() {
-        return "Revista {" +
+        return " {" +
                 "ID: " + getIdMaterial() +
                 ", Título: " + getTitulo() +
                 ", Editorial: " + getEditorial() +

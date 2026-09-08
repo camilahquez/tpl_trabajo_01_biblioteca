@@ -24,6 +24,7 @@ public class Main {
             System.out.println("8. Ver Estadísticas"); // <-- ¡Aquí está de vuelta!
             System.out.println("9. Cerrar Sesión");
             System.out.println("10. Salir del sistema");
+            System.out.println("11.buscar por autor");
             System.out.print("Elige una opción: ");
             
             opcion = scanner.nextInt();
@@ -184,6 +185,12 @@ public class Main {
                 case 10:
                     System.out.println("Saliendo del sistema... ¡Hasta luego!");
                     break;
+
+                case 11:
+                    System.out.println("buscar por autor");
+                    String autor = scanner.nextLine();
+                    biblioteca.buscarPorAutor(autor);
+
 
                 default:
                     System.out.println("Opción no válida. Por favor, intenta de nuevo.");

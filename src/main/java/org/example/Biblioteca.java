@@ -66,18 +66,11 @@ public class Biblioteca {
     public ArrayList<Material> buscarPorAutor(String autor) {
         ArrayList<Material> resultado = new ArrayList<>();
         for (Material material : listaMateriales) {
-            if (material instanceof Libro) {
-                Libro libro = (Libro) material;
-                if (libro.getAutor().equals(autor)) {
-                    resultado.add(libro);
-                }
-            } else if (material instanceof LibroDigital) {
-                LibroDigital libroDigital = (LibroDigital) material;
-                if (libroDigital.getAutor().equals(autor)) {
-                    resultado.add(libroDigital);
-                }
+            if (material.getAutor().equals(autor)){
+                resultado.add(material);
             }
         }
+        System.out.println(resultado);
         return resultado;
     }
 

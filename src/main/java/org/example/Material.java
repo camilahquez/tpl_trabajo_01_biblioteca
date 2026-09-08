@@ -28,6 +28,7 @@ public Material(String idMaterial,String titulo, String editorial, String idioma
 }
 
     public abstract String getTipo();
+    public  abstract String getAutor();
 
     public String getIdMaterial(){
         return idMaterial;
