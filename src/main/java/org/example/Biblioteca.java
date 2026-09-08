@@ -262,6 +262,7 @@ public class Biblioteca {
         if (material instanceof Descargable) {
             Descargable descargable = (Descargable) material;
             System.out.println("Enlace de descarga: " + descargable.Enlace());
+            descargable.descargar();
             descargable.descargas();
             System.out.println("Total de descargas: " + descargable.totalDescargas());
         } else {
